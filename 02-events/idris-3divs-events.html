@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            margin: 10px;
+            padding: 12px;
+            border: 2px solid #666;
+            width: 60px;
+            text-align: center;
+            color: white;
+            cursor: pointer;
+        }
+
+        #blue {
+            background-color: blue;
+        }
+
+        #green {
+            background-color: green;
+        }
+
+        #red {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="blue" class="box">Blauw</div>
+    <div id="green" class="box">Groen</div>
+    <div id="red" class="box">Rood</div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".box").on('click', function (e) {
+                console.log("Events type is:", e.type);
+                console.log("Target is:", e.target);
+                console.log("Target html is:", e.target.innerHTML);
+            });
+
+            $(".box").mouseenter(function (e) {
+                $(e.target).css("width", "100px");
+            });
+
+            $(".box").mouseleave(function (e) {
+                $(e.target).css("width", "60px");
+            });
+        });
+    </script>
+</body>
+
+</html>

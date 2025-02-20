@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus porro labore quia aperiam minus, laboriosam
+        aspernatur suscipit natus cupiditate tenetur? Pariatur nesciunt labore eveniet amet sint voluptas, optio maiores
+        nam.
+    </p>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('p').on('click', function (event) {
+                console.log("U hebt geklikt op x : " + event.pageX + " en y : " + event.pageY);
+            });
+
+            $(document).on('click', function (event) {
+                console.log("U hebt geklikt op x : " + event.pageX + " en y : " + event.pageY);
+            });
+
+
+        });
+    </script>
+</body>
+
+</html>

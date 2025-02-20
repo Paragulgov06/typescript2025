@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events Pijltjestoets</title>
+    <style>
+        .kader {
+            border: 9px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <label for="naam">Naam</label>
+    <input type="text" id="naam">
+    <label for="achternaam">Achternaam</label>
+    <input type="text" id="achternaam">
+    <div id="key"></div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('input').on('focus', function () {
+                $(this).addClass('kader');
+            });
+            $('input').on('blur', function () {
+                $(this).removeClass('kader');
+            });
+            $(document).on('keyup', function (e) {
+                let knop;
+                switch (e.which) {
+                    case 37:
+                        knop = "Key links";
+                        break;
+                    case 38:
+                        knop = "Key omhoog";
+                        break;
+                    case 39:
+                        knop = "Key rechts";
+                        break;
+                    case 40:
+                        knop = "Key omlaag";
+                        break;
+                    default:
+                        return;
+                }
+                $('#key').append(knop + "<br>");
+            });
+        });
+    </script>
+</body>
+
+</html>

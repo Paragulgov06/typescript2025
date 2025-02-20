@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        textarea {
+            width: 300px;
+            height: 100px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        p {
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .limiet-bereikt {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Live Karaktertelling</h2>
+    <textarea id="bericht" placeholder="Typ hier je bericht..."></textarea>
+    <p><span id="karakterTeller">0</span></p>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            let $bericht = $('#bericht');
+            let $karakterTeller = $('#karakterTeller');
+            $bericht.on('input', function () {
+                let aantalKarakters = $(this).val().length;
+                if (aantalKarakters > 150) {
+                    $karakterTeller.text("150+ (Limiet bereikt!)").addClass("limiet-bereikt");
+                } else {
+                    $karakterTeller.removeClass("limiet-bereikt").text(aantalKarakters + "/150 karakters");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
