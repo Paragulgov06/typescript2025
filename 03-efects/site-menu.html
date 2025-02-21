@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: none;
+        }
+
+        div#menu {
+            width: 150px;
+            left: -180px;
+            position: absolute;
+            z-index: 100;
+        }
+
+        div#menu ul li {
+            margin-bottom: 1px;
+            position: relative;
+            float: left;
+        }
+
+        div#menu ul#unorderedList li a {
+            width: 150px;
+            height: 22px;
+            background-color: #00293E;
+            /*color: #ffffff;*/
+            text-decoration: none;
+            display: block;
+            padding: 7px 10px 0 0;
+            text-align: right;
+            font-weight: bold;
+            cursor: pointer;
+            cursor: hand;
+        }
+
+        #inhoud {
+            left: 50px;
+            position: absolute;
+            width: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>jQuery rocks the menu !</h1>
+        <div id="menu">
+            <ul id="unorderedList">
+                <li><a href="#">Menu 1</a></li>
+                <li><a href="#">Menu 2</a></li>
+                <li><a href="#">Menu 3</a></li>
+                <li><a href="#">Menu 4</a></li>
+                <li><a href="#">Menu 5</a></li>
+                <li><a href="#">Menu 6</a></li>
+            </ul>
+        </div>
+        <div id="inhoud">
+            <ul>
+                <h2>Inhoud 1</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quibusdam alias inventore sed
+                    assumenda dolor, aspernatur labore pariatur necessitatibus nesciunt doloremque suscipit, velit
+                    maxime nemo quam, dolorem et natus animi!
+                </p>
+            </ul>
+            <ul>
+                <h2>Inhoud 2</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quibusdam alias inventore sed
+                    assumenda dolor, aspernatur labore pariatur necessitatibus nesciunt doloremque suscipit, velit
+                    maxime nemo quam, dolorem et natus animi!
+                </p>
+            </ul>
+            <ul>
+                <h2>Inhoud 3</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quibusdam alias inventore sed
+                    assumenda dolor, aspernatur labore pariatur necessitatibus nesciunt doloremque suscipit, velit
+                    maxime nemo quam, dolorem et natus animi!
+                </p>
+            </ul>
+            <ul>
+                <h2>Inhoud 4</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quibusdam alias inventore sed
+                    assumenda dolor, aspernatur labore pariatur necessitatibus nesciunt doloremque suscipit, velit
+                    maxime nemo quam, dolorem et natus animi!
+                </p>
+            </ul>
+            <ul>
+                <h2>Inhoud 5</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quibusdam alias inventore sed
+                    assumenda dolor, aspernatur labore pariatur necessitatibus nesciunt doloremque suscipit, velit
+                    maxime nemo quam, dolorem et natus animi!
+                </p>
+            </ul>
+            <ul>
+                <h2>Inhoud 6</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quibusdam alias inventore sed
+                    assumenda dolor, aspernatur labore pariatur necessitatibus nesciunt doloremque suscipit, velit
+                    maxime nemo quam, dolorem et natus animi!
+                </p>
+            </ul>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('div.container').fadeIn(1000);
+
+        });
+    </script>
+</body>
+
+</html>

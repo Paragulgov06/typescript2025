@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            justify-items: center;
+            align-items: center;
+        }
+
+        .mydiv {
+
+            padding: 12px;
+            border: 2px solid #666;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mydiv">
+        Dit is mijn div.
+    </div>
+    <input id="hide" type="button" value="Hide" />
+    <input id="show" type="button" value="Show" />
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $mydiv = $('.mydiv');
+            $('#hide').on('click', function () {
+                $mydiv.hide(1000);
+            });
+            $('#show').on('click', function () {
+                $mydiv.show(1000);
+            });
+        });
+    </script>
+</body>
+
+</html>
