@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <style>
         .container {
             display: none;
@@ -61,12 +62,12 @@
         <h1>jQuery rocks the menu !</h1>
         <div id="menu">
             <ul id="unorderedList">
-                <li class="activated"><a href="#">Menu 1</a></li>
-                <li class="disactivated"><a href="#">Menu 2</a></li>
-                <li class="disactivated"><a href="#">Menu 3</a></li>
-                <li class="disactivated"><a href="#">Menu 4</a></li>
-                <li class="disactivated"><a href="#">Menu 5</a></li>
-                <li class="disactivated"><a href="#">Menu 6</a></li>
+                <li><a href="#">Menu 1</a></li>
+                <li><a href="#">Menu 2</a></li>
+                <li><a href="#">Menu 3</a></li>
+                <li><a href="#">Menu 4</a></li>
+                <li><a href="#">Menu 5</a></li>
+                <li><a href="#">Menu 6</a></li>
             </ul>
         </div>
         <div id="inhoud">
@@ -118,23 +119,24 @@
     <script>
         $(document).ready(function () {
             $('div.container').fadeIn(1000);
-            $('#menu').css('left', '-180px');
+            $('.content').eq(0).show();
 
-            $("div#menu").hover(
+            $("div#menu ul li").hover(
                 function () {
-                    $('#unorderedList').animate({ left: "-50px" }, 300);
+                    $(this).animate({ left: "120px" }, 200);
+                    $(this).css('background-color', 'green');
                 },
                 function () {
-                    $('#unorderedList').animate({ left: "-120px" }, 300);
+                    $(this).animate({ left: "0px", }, 200);
+                    $(this).css('background-color', '#00293E');
                 }
             );
 
-            $("#menu li").on("click", function () {
-                $("#menu li").removeClass("activated").addClass("disactivated");
+            $("#menu ul li").on("click", function () {
+                $("#menu ul li").removeClass("activated").addClass("disactivated");
                 $(this).removeClass("disactivated").addClass("activated");
 
                 let index = $(this).index();
-
                 $(".content").eq(index).slideDown().siblings(".content").slideUp();
             });
 

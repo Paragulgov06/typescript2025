@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: none;
+        }
+
+        div#menu {
+            width: 150px;
+            left: -120px;
+            position: absolute;
+            z-index: 100;
+        }
+
+        div#menu ul li {
+            margin-bottom: 1px;
+            position: relative;
+            float: left;
+            width: 150px;
+            height: 30px;
+            line-height: 30px;
+            text-align: right;
+            list-style: none;
+            background-color: #00293E;
+            color: white;
+            font-weight: bold;
+            padding-right: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        div#menu ul li:hover {
+            background-color: green;
+        }
+
+        #inhoud {
+            left: 50px;
+            position: absolute;
+            width: 500px;
+        }
+
+        .content {
+            display: none;
+        }
+
+        .activated a {
+            color: red !important;
+        }
+
+        .disactivated a {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>jQuery rocks the menu!</h1>
+        <div id="menu">
+            <ul id="unorderedList">
+                <li class="activated">Menu 1</li>
+                <li class="disactivated">Menu 2</li>
+                <li class="disactivated">Menu 3</li>
+                <li class="disactivated">Menu 4</li>
+                <li class="disactivated">Menu 5</li>
+                <li class="disactivated">Menu 6</li>
+            </ul>
+        </div>
+        <div id="inhoud">
+            <div class="content">
+                <h2>Inhoud 1</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+            <div class="content">
+                <h2>Inhoud 2</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+            <div class="content">
+                <h2>Inhoud 3</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+            <div class="content">
+                <h2>Inhoud 4</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+            <div class="content">
+                <h2>Inhoud 5</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+            <div class="content">
+                <h2>Inhoud 6</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Container fade in
+            $('#container').fadeIn();
+
+            // Toon eerste inhoud item
+            $('.content').eq(0).show();
+
+            // Menu hover animation
+            $('#menu ul li').hover(
+                function () {
+                    $(this).animate({
+                        left: '180px'
+                    }, 200);
+                    $('a', this).css('background-color', '#004970');
+                },
+                function () {
+                    $(this).animate({
+                        left: '0px'
+                    }, 200);
+                    $('a', this).css('background-color', '#00293E');
+                }
+            );
+
+            // Menu click handler
+            $('#menu ul li').click(function () {
+                // Active/disactive menu items
+                $('#menu ul li').removeClass('activated').addClass('disactivated');
+                $(this).removeClass('disactivated').addClass('activated');
+
+                // Show/hide content
+                var index = $(this).index();
+                $('.content').slideUp();
+                $('.content').eq(index).slideDown();
+            });
+        });
+    </script>
+</body>
+
+</html>
