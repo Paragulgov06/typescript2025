@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Menu with jQuery</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+</head>
+
+<body>
+    <div class="container">
+        <ul id="menu">
+            <li>
+                <a href="#">
+                    <i class="icon_about"></i>
+                    <span class="title">About</span>
+                    <span class="description">Learn about us and our services</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="icon_work"></i>
+                    <span class="title">Work</span>
+                    <span class="description">See our work and portfolio</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="icon_help"></i>
+                    <span class="title">Help</span>
+                    <span class="description">Talk to our support</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="icon_search"></i>
+                    <span class="title">Search</span>
+                    <span class="description">Search our website</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // function animeer(selectie, propertyWaarde, speed) {
+            //     selectie.animate(propertyWaarde, {
+            //         duration: speed,
+            //         queue: false // Voorkomt queuing van animaties
+            //     });
+            // }
+
+            // // Hover event op li elementen
+            // $('#menu li').hover(
+            //     function () { // Mouse enter
+            //         // Animeren van a element
+            //         animeer($(this).find('a'), { "bottom": "-15px" }, 200);
+            //         // Animeren van i element
+            //         animeer($(this).find('i'), { "top": "-15px" }, 200);
+            //     },
+            //     function () { // Mouse leave
+            //         // Terug naar originele positie
+            //         animeer($(this).find('a'), { "bottom": "0px" }, 200);
+            //         animeer($(this).find('i'), { "top": "0px" }, 200);
+            //     }
+            // );
+            function animeer(selectie, propertyWaarde, speed) {
+                $(selectie).stop(true, true).animate(propertyWaarde, speed);
+            }
+
+            $("#menu li").hover(
+                function () {
+                    animeer($(this).children("a"), { "bottom": "-15px" }, 300);
+                    animeer($(this).children("a").children("i"), { "top": "-10px" }, 300);
+                },
+                function () {
+                    animeer($(this).children("a"), { "bottom": "0px" }, 300);
+                    animeer($(this).children("a").children("i"), { "top": "0px" }, 300);
+                }
+            );
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wat is jouw sterrenbeeld?</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            justify-items: center;
+            align-content: center;
+            align-items: center;
+        }
+
+        input {
+            display: block;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        .tooltip {
+            display: none;
+            background: #5c878f;
+            color: white;
+            padding: 5px;
+            position: absolute;
+            border-radius: 5px;
+        }
+
+        .error {
+            color: red;
+        }
+
+        #resultaat {
+            margin-top: 20px;
+        }
+
+        .sterrenbeeld {
+            background: #5c878f;
+            color: white;
+            padding: 10px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Wat is jouw sterrenbeeld?</h1>
+    <p>Geef de dag en maand van jouw geboortedatum in.</p>
+
+    <label for="dag">Geboortedag:</label>
+    <input type="text" id="dag" value="01">
+    <span class="tooltip" id="dagTooltip"></span>
+    <p class="error" id="dagError"></p>
+
+    <label for="maand">Geboortemaand:</label>
+    <input type="text" id="maand" value="04">
+    <span class="tooltip" id="maandTooltip">Geef je geboortemaand in.</span>
+    <p class="error" id="maandError"></p>
+
+    <button id="bereken">Ontdek je sterrenbeeld</button>
+
+    <div id="resultaat"></div>
+
+    <script>
+        $(document).ready(function () {
+            let dagok = false, maandok = false;
+
+            // Tooltip tonen bij hover
+            $("input").hover(function () {
+                $(this).next(".tooltip").fadeIn();
+            }, function () {
+                $(this).next(".tooltip").fadeOut();
+            });
+
+            // Placeholder verwijderen bij focus
+            $("input").focus(function () {
+                if ($(this).val() === "01" || $(this).val() === "04") {
+                    $(this).val("");
+                }
+            });
+
+            // Validatie bij blur
+            $("#dag, #maand").blur(function () {
+                let waarde = parseInt($(this).val());
+                let id = $(this).attr("id");
+                let foutmelding = "";
+
+                if (isNaN(waarde)) {
+                    foutmelding = id === "dag" ? "Geef een dag in tussen 1 en 31." : "Geef een maand in tussen 1 en 12.";
+                    if (id === "dag") dagok = false;
+                    else maandok = false;
+                } else if (id === "dag" && (waarde < 1 || waarde > 31)) {
+                    foutmelding = "Geef een dag in tussen 1 en 31.";
+                    dagok = false;
+                } else if (id === "maand" && (waarde < 1 || waarde > 12)) {
+                    foutmelding = "Geef een maand in tussen 1 en 12.";
+                    maandok = false;
+                } else {
+                    if (id === "dag") dagok = true;
+                    else maandok = true;
+                }
+
+                $(this).nextAll(".error").text(foutmelding);
+            });
+
+            // Berekening sterrenbeeld
+            $("#bereken").click(function () {
+                if (!dagok || !maandok) {
+                    alert("Vul correcte waarden in voor dag en maand.");
+                    return;
+                }
+
+                let dag = parseInt($("#dag").val());
+                let maand = parseInt($("#maand").val());
+                let sterrenbeeld = "";
+                let afbeelding = "";
+
+                if ((maand == 1 && dag <= 19) || (maand == 12 && dag >= 21)) {
+                    sterrenbeeld = "Steenbok";
+                    afbeelding = "img/Steenbok.jpg";
+                } else if ((maand == 1 && dag >= 20) || (maand == 2 && dag <= 18)) {
+                    sterrenbeeld = "Waterman";
+                    afbeelding = "img/Waterman.jpg";
+                } else if ((maand == 2 && dag >= 19) || (maand == 3 && dag <= 20)) {
+                    sterrenbeeld = "Vissen";
+                    afbeelding = "img/Vissen.jpg";
+                } else if ((maand == 3 && dag >= 21) || (maand == 4 && dag <= 20)) {
+                    sterrenbeeld = "Ram";
+                    afbeelding = "img/Ram.jpg";
+                } else if ((maand == 4 && dag >= 21) || (maand == 5 && dag <= 21)) {
+                    sterrenbeeld = "Stier";
+                    afbeelding = "img/Stier.jpg";
+                } else if ((maand == 5 && dag >= 22) || (maand == 6 && dag <= 21)) {
+                    sterrenbeeld = "Tweelingen";
+                    afbeelding = "img/Tweelingen.jpg";
+                } else if ((maand == 6 && dag >= 22) || (maand == 7 && dag <= 22)) {
+                    sterrenbeeld = "Kreeft";
+                    afbeelding = "img/Kreeft.jpg";
+                } else if ((maand == 7 && dag >= 23) || (maand == 8 && dag <= 22)) {
+                    sterrenbeeld = "Leeuw";
+                    afbeelding = "img/Leeuw.jpg";
+                } else if ((maand == 8 && dag >= 23) || (maand == 9 && dag <= 22)) {
+                    sterrenbeeld = "Maagd";
+                    afbeelding = "img/Maagd.jpg";
+                } else if ((maand == 9 && dag >= 23) || (maand == 10 && dag <= 22)) {
+                    sterrenbeeld = "Weegschaal";
+                    afbeelding = "img/Weegschaal.jpg";
+                } else if ((maand == 10 && dag >= 23) || (maand == 11 && dag <= 22)) {
+                    sterrenbeeld = "Schorpioen";
+                    afbeelding = "img/Schorpioen.jpg";
+                } else if ((maand == 11 && dag >= 23) || (maand == 12 && dag <= 20)) {
+                    sterrenbeeld = "Boogschutter";
+                    afbeelding = "img/Boogschutter.jpg";
+                }
+
+                $("#resultaat").html(`
+                    <p class="sterrenbeeld">${sterrenbeeld}</p>
+                    <img src="${afbeelding}" alt="${sterrenbeeld}" width="150">
+                `);
+            });
+        });
+    </script>
+
+</body>
+
+</html>
