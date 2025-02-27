@@ -5,15 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <style>
         .container {
             display: none;
         }
 
         div#menu {
-            width: 150px;
-            left: -120px;
+            width: 160px;
+            left: -180px;
             position: absolute;
             z-index: 100;
         }
@@ -119,16 +118,18 @@
     <script>
         $(document).ready(function () {
             $('div.container').fadeIn(1000);
-            $('.content').eq(0).show();
+
 
             $("div#menu ul li").hover(
                 function () {
-                    $(this).animate({ left: "120px" }, 200);
-                    $(this).css('background-color', 'green');
+
+                    $(this).animate({ left: "140px" }, 300,)
+                    $(this).find('a').css('background-color', '#32CD32');
                 },
                 function () {
-                    $(this).animate({ left: "0px", }, 200);
-                    $(this).css('background-color', '#00293E');
+
+                    $(this).animate({ left: "0px", }, 300)
+                    $(this).find('a').css('background-color', '#00293E')
                 }
             );
 
@@ -142,6 +143,7 @@
 
             $(".content").first().slideDown();
         });
+
     </script>
 </body>
 
