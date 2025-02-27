@@ -87,7 +87,6 @@
         $(document).ready(function () {
             let dagok = false, maandok = false;
 
-            // Tooltip tonen bij mouseenter en verplaatsen bij mousemove
             $("input").on({
                 mouseenter: function () {
                     $(this).next(".tooltip").fadeIn();
@@ -103,14 +102,12 @@
                 }
             });
 
-            // Placeholder verwijderen bij focus
             $("input").focus(function () {
                 if ($(this).val() === "01-31" || $(this).val() === "01-12") {
                     $(this).val("");
                 }
             });
 
-            // Validatie bij blur
             $("#dag").blur(function () {
                 let waarde = parseInt($(this).val());
                 let foutmelding = "";
@@ -125,7 +122,7 @@
                     dagok = true;
                 }
 
-                $("#dagError").text(foutmelding);  // Foutmelding voor dag
+                $("#dagError").text(foutmelding);
             });
 
             $("#maand").blur(function () {
@@ -142,15 +139,11 @@
                     maandok = true;
                 }
 
-                $("#maandError").text(foutmelding);  // Foutmelding voor maand
+                $("#maandError").text(foutmelding);
             });
 
-            // Berekening sterrenbeeld
             $("#bereken").click(function () {
-                if (!dagok || !maandok) {
-                    alert("Vul correcte waarden in voor dag en maand.");
-                    return;
-                }
+
 
                 let dag = parseInt($("#dag").val());
                 let maand = parseInt($("#maand").val());
