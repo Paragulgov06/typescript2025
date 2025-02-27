@@ -10,8 +10,7 @@
         body {
             font-family: Arial, sans-serif;
             justify-items: center;
-            align-content: center;
-            align-items: center;
+
         }
 
         input {
@@ -35,14 +34,31 @@
 
         #resultaat {
             margin-top: 20px;
+            display: grid;
+        }
+
+        button {
+            background-color: #5c878f;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 15px;
+            cursor: pointer;
         }
 
         .sterrenbeeld {
             background: #5c878f;
             color: white;
             padding: 10px;
-            display: inline-block;
+            display: block;
             margin-top: 10px;
+            font-size: 15px;
+        }
+
+        .text {
+            font-size: 15px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -53,59 +69,80 @@
     <p>Geef de dag en maand van jouw geboortedatum in.</p>
 
     <label for="dag">Geboortedag:</label>
-    <input type="text" id="dag" value="01">
-    <span class="tooltip" id="dagTooltip"></span>
+    <input type="text" id="dag" value="01-31">
+    <span class="tooltip" id="dagTooltip">Geef je geboortedag in.</span>
     <p class="error" id="dagError"></p>
 
     <label for="maand">Geboortemaand:</label>
-    <input type="text" id="maand" value="04">
+    <input type="text" id="maand" value="01-12">
     <span class="tooltip" id="maandTooltip">Geef je geboortemaand in.</span>
     <p class="error" id="maandError"></p>
 
     <button id="bereken">Ontdek je sterrenbeeld</button>
 
-    <div id="resultaat"></div>
+    <div id="resultaat">
+    </div>
 
     <script>
         $(document).ready(function () {
             let dagok = false, maandok = false;
 
-            // Tooltip tonen bij hover
-            $("input").hover(function () {
-                $(this).next(".tooltip").fadeIn();
-            }, function () {
-                $(this).next(".tooltip").fadeOut();
+            // Tooltip tonen bij mouseenter en verplaatsen bij mousemove
+            $("input").on({
+                mouseenter: function () {
+                    $(this).next(".tooltip").fadeIn();
+                },
+                mouseleave: function () {
+                    $(this).next(".tooltip").fadeOut();
+                },
+                mousemove: function (e) {
+                    $(this).next(".tooltip").css({
+                        top: e.pageY + 10,
+                        left: e.pageX + 10
+                    });
+                }
             });
 
             // Placeholder verwijderen bij focus
             $("input").focus(function () {
-                if ($(this).val() === "01" || $(this).val() === "04") {
+                if ($(this).val() === "01-31" || $(this).val() === "01-12") {
                     $(this).val("");
                 }
             });
 
             // Validatie bij blur
-            $("#dag, #maand").blur(function () {
+            $("#dag").blur(function () {
                 let waarde = parseInt($(this).val());
-                let id = $(this).attr("id");
                 let foutmelding = "";
 
                 if (isNaN(waarde)) {
-                    foutmelding = id === "dag" ? "Geef een dag in tussen 1 en 31." : "Geef een maand in tussen 1 en 12.";
-                    if (id === "dag") dagok = false;
-                    else maandok = false;
-                } else if (id === "dag" && (waarde < 1 || waarde > 31)) {
                     foutmelding = "Geef een dag in tussen 1 en 31.";
                     dagok = false;
-                } else if (id === "maand" && (waarde < 1 || waarde > 12)) {
+                } else if (waarde < 1 || waarde > 31) {
+                    foutmelding = "Geef een dag in tussen 1 en 31.";
+                    dagok = false;
+                } else {
+                    dagok = true;
+                }
+
+                $("#dagError").text(foutmelding);  // Foutmelding voor dag
+            });
+
+            $("#maand").blur(function () {
+                let waarde = parseInt($(this).val());
+                let foutmelding = "";
+
+                if (isNaN(waarde)) {
+                    foutmelding = "Geef een maand in tussen 1 en 12.";
+                    maandok = false;
+                } else if (waarde < 1 || waarde > 12) {
                     foutmelding = "Geef een maand in tussen 1 en 12.";
                     maandok = false;
                 } else {
-                    if (id === "dag") dagok = true;
-                    else maandok = true;
+                    maandok = true;
                 }
 
-                $(this).nextAll(".error").text(foutmelding);
+                $("#maandError").text(foutmelding);  // Foutmelding voor maand
             });
 
             // Berekening sterrenbeeld
@@ -159,8 +196,9 @@
                 }
 
                 $("#resultaat").html(`
+                    <p class="text">Jouw sterrenbeeld:</p>
                     <p class="sterrenbeeld">${sterrenbeeld}</p>
-                    <img src="${afbeelding}" alt="${sterrenbeeld}" width="150">
+                    <img src="${afbeelding}" alt="${sterrenbeeld}" width="200">
                 `);
             });
         });
