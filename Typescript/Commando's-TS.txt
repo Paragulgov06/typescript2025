@@ -1,0 +1,16 @@
+npm init -y
+npm install typescript --save-dev
+npx tsc --init
+
+Voeg toe in package.json aan scripts:
+, "build": "tsc"
+
+Voeg toe in tsconfig.json:
+	"outDir": "./output", 
+
+Maak src map
+Maak index.ts bestand
+
+npm run build
+cd output
+node index.js
