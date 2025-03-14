@@ -39,10 +39,22 @@ var Planeten;
 })(Planeten || (Planeten = {}));
 const favoritePlanetInfo = Planeten.Earth;
 console.log(`Mijn favoriete planeet is Earth "${favoritePlanetInfo}"`);
-console.log(`Mijn favoriete planeet is Earth "${Planeten.Mars}"`);
+console.log(`Mijn favoriete planeet is "${Planeten.Mars}"`);
 let mijnData = "Hello, world!";
 mijnData = 42;
 console.log(`Mijn data: ${mijnData}`);
 let externeInput;
 externeInput = "Lil Dick Randi";
 console.log(`Externe input is: ${externeInput}`);
+// functies 
+function begroet(naam) {
+    return `Hallo, ${naam}!`;
+}
+function logMessage(message) {
+    console.log(message);
+}
+logMessage('Hi');
+function begroet2(naam, taal = "Nederlands") {
+    return `Hallo, ${naam}! (${taal})`;
+}
+//# sourceMappingURL=oef.js.map

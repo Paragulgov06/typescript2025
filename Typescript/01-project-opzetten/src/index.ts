@@ -49,3 +49,36 @@ enum Colors {
 
 const favoriteColor: Colors = Colors.Green;
 console.log(favoriteColor);  // Outputs: "#00FF00"
+
+// function
+const calculate = (num1: number, num2: number, tipo?: string): number => {
+    return tipo === "subtract" ? num1 - num2 : num1 + num2;
+}
+console.log(calculate(10, 5));
+console.log(calculate(20, 15, "subtract"));
+
+const introduce = (naam: string, leeftijd: number = 30): string =>
+    `Hallo, ik ben ${naam} en ik ben ${leeftijd} jaar oud.`;
+
+console.log(introduce("John Doe"));
+console.log(introduce("Randi Warrandi", 40));
+
+const user: { name: string, age: number, describe(): string } =
+{
+    name: "Charlie",
+    age: 35,
+    describe() {
+        return `Hello, my name is ${this.name} and i am ${this.age} years old.`;
+    }
+}
+console.log(user.describe());
+
+// object literal
+// const person = {
+//     name: "Alice",
+//     startTimer: function () {
+//         setInterval(() => {console.log(`Hallo, mijn naam is ${this.name}`); }, 1000);
+//     },
+// };
+// person.startTimer();
+

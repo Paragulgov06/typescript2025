@@ -45,3 +45,29 @@ var Colors;
 })(Colors || (Colors = {}));
 const favoriteColor = Colors.Green;
 console.log(favoriteColor); // Outputs: "#00FF00"
+// function
+const calculate = (num1, num2, tipo) => {
+    return tipo === "subtract" ? num1 - num2 : num1 + num2;
+};
+console.log(calculate(10, 5));
+console.log(calculate(20, 15, "subtract"));
+const introduce = (naam, leeftijd = 30) => `Hallo, ik ben ${naam} en ik ben ${leeftijd} jaar oud.`;
+console.log(introduce("John Doe"));
+console.log(introduce("Randi Warrandi", 40));
+const user = {
+    name: "Charlie",
+    age: 35,
+    describe() {
+        return `Hello, my name is ${this.name} and i am ${this.age} years old.`;
+    }
+};
+console.log(user.describe());
+// object literal
+// const person = {
+//     name: "Alice",
+//     startTimer: function () {
+//         setInterval(() => {console.log(`Hallo, mijn naam is ${this.name}`); }, 1000);
+//     },
+// };
+// person.startTimer();
+//# sourceMappingURL=index.js.map
