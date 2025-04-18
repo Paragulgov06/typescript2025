@@ -3,7 +3,7 @@ npm install typescript --save-dev
 npx tsc --init
 
 Voeg toe in package.json aan scripts:
-, "build": "tsc"
+"build": "tsc"
 
 Voeg toe in tsconfig.json:
 	"outDir": "./output", 
